@@ -21,7 +21,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <includes>
-                        <include>JUnit4Runner.java</include>
+                        <include>BookingRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -53,5 +53,24 @@
             <artifactId>selenium-chrome-driver</artifactId>
             <version>3.141.59</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+
     </dependencies>
 </project>

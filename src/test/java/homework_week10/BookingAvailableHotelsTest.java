@@ -1,3 +1,5 @@
+package homework_week10;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,16 +9,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-public class BookingRatingTest {
+public class BookingAvailableHotelsTest {
 
     private static WebDriver driver;
 
@@ -28,7 +26,7 @@ public class BookingRatingTest {
     }
 
     @Test
-    public void checkMaxRatingHotel() {
+    public void checkAvailableHotels() {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
@@ -45,22 +43,11 @@ public class BookingRatingTest {
 
         driver.findElement(By.xpath("//button[@class='sb-searchbox__button ']")).click();
 
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofMillis(5))
-                .ignoring(NoSuchElementException.class)
-                .until(ExpectedConditions.invisibilityOfElementLocated
-                        (By.xpath("//div[@data-testid='overlay-spinner']")));
+        String headText = driver.findElement(By.xpath("//h1")).getText().replaceAll("\\D", "");
+        int numberHotels = Integer.parseInt(headText);
+        System.out.println("Number of available hotels is " + numberHotels);
 
-        driver.findElement(By.xpath("//div[@data-filters-item='review_score:review_score=90']")).click();
-        driver.findElement(By.xpath("//div[@data-testid='property-card'][1]//h3/a")).click();
-
-        WebElement hotelRating = driver.findElement(By.xpath
-                ("//div[@id='js--hp-gallery-scorecard']//div[contains(@aria-label, '9')]"));
-        double actualHotelRating = Double.parseDouble(hotelRating.getText().replaceAll("\\D", ""));
-        System.out.println("Actual rating of selected hotel is " + actualHotelRating);
-
+        Assert.assertTrue("No available hotels for selected dates", numberHotels > 0);
     }
 
     @After
@@ -68,4 +55,3 @@ public class BookingRatingTest {
         driver.close();
     }
 }
-
