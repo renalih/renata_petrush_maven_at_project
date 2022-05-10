@@ -1,8 +1,11 @@
+package homework_week10;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.concurrent.TimeUnit;
 
-public class BookingAvailableHotelsTest {
+public class BookingChangeColorTest {
 
     private static WebDriver driver;
 
@@ -24,28 +27,37 @@ public class BookingAvailableHotelsTest {
     }
 
     @Test
-    public void checkAvailableHotels() {
+    public void changeTextColor() {
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 
         driver.get("https://booking.com");
-        driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click(); //accepting cookie
+        driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
         driver.findElement(By.id("ss")).sendKeys("London");
-        driver.findElement(By.xpath("//span[text()='London']")).click();
+        driver.findElement(By.xpath("//span/span[text()='London']")).click();
 
-        LocalDate dateFrom = LocalDate.now(ZoneId.systemDefault()).plusDays(10);
-        LocalDate dateTo = dateFrom.plusDays(2);
+        LocalDate dateFrom = LocalDate.now(ZoneId.systemDefault()).plusDays(7);
+        LocalDate dateTo = dateFrom.plusDays(5);
         driver.findElement(By.xpath(String.format("//td[@data-date='%s']", dateFrom))).click();
         driver.findElement(By.xpath(String.format("//td[@data-date='%s']", dateTo))).click();
 
         driver.findElement(By.xpath("//button[@class='sb-searchbox__button ']")).click();
 
-        String headText = driver.findElement(By.xpath("//h1")).getText().replaceAll("\\D", "");
-        int numberHotels = Integer.parseInt(headText);
-        System.out.println("Number of available hotels is " + numberHotels);
+        WebElement backgroundOfTenHotel = driver.findElement(By.xpath("//div[@data-testid='property-card'][10]"));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", backgroundOfTenHotel);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].style.backgroundColor = 'green'",
+                backgroundOfTenHotel);
 
-        Assert.assertTrue("No available hotels for selected dates", numberHotels > 0);
+        WebElement textColor = driver.findElement
+                (By.xpath("//div[@data-testid='property-card'][10]//*[@data-testid='title']"));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].style.color = 'red'", textColor);
+
+        String resultTextColor = textColor.getCssValue("color");
+
+        Assert.assertEquals("Text color of 10th hotel from the list is not red!",
+                "rgba(255, 0, 0, 1)", resultTextColor);
     }
 
     @After
