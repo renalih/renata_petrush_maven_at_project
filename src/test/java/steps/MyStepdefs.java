@@ -1,8 +1,8 @@
-package classwork18.steps;
+package steps;
 
-import classwork17.Driver;
-import classwork18.pages.BookingMainPage;
-import classwork18.pages.BookingResultPage;
+import driver.Driver;
+import pages.BookingMainPage;
+import pages.BookingResultPage;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
