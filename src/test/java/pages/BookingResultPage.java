@@ -1,4 +1,4 @@
-package classwork18.pages;
+package pages;
 
 import org.openqa.selenium.By;
 

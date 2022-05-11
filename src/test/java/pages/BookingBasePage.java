@@ -1,6 +1,6 @@
-package classwork18.pages;
+package pages;
 
-import classwork17.Driver;
+import driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;

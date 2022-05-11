@@ -1,4 +1,4 @@
-package classwork18.pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ public class BookingMainPage extends BookingBasePage {
 
     private static final String SEARCH_FIELD_ID = "ss";
     private static final String SEARCH_BUTTON = "//button[@class='sb-searchbox__button ']";
-    private static final String CITY_FROM_LIST = "//span[text()='Париж']";
+    private static final String CITY_FROM_LIST = "//ul[@role='listbox']//li[1]";
 
 
     public void searchCity(String cityName) {
