@@ -1,4 +1,4 @@
-package homework_week10;
+package tasks.homework_week10;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -14,6 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 public class W3schoolsTest {
 
@@ -62,10 +63,19 @@ public class W3schoolsTest {
         //checking search results
         List<WebElement> listTutorials = driver.findElements(By.xpath
                 ("//div[contains(@class, 'g') and contains(., 'tutorial')]"));
-        int resultsAmount = listTutorials.size();
-        System.out.println("Number of tutorial results is " + resultsAmount);
+        int expectedCountTutorials = listTutorials.size();
+        System.out.println("Expected count of tutorial results is " + expectedCountTutorials);
 
-        Assert.assertEquals("Amount of tutorials on page is incorrect!",8, resultsAmount);
+        int actualCountTutorials = 0;
+        for (WebElement e : listTutorials) {
+            if (e.getText().contains("tutorial")) {
+                actualCountTutorials++;
+            }
+        }
+        System.out.println("Actual count of tutorial results is " + actualCountTutorials);
+
+        Assert.assertEquals("Amount of tutorials on page is incorrect!",
+                expectedCountTutorials, actualCountTutorials);
     }
 
     @After
