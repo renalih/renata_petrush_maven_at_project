@@ -1,4 +1,4 @@
-package homework_week10;
+package tasks.homework_week10;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -36,7 +36,7 @@ public class BookingChangeColorTest {
         driver.get("https://booking.com");
         driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
         driver.findElement(By.id("ss")).sendKeys("London");
-        driver.findElement(By.xpath("//span/span[text()='London']")).click();
+        driver.findElement(By.xpath("//ul[@role='listbox']//li[1]")).click();
 
         LocalDate dateFrom = LocalDate.now(ZoneId.systemDefault()).plusDays(7);
         LocalDate dateTo = dateFrom.plusDays(5);

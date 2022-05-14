@@ -1,4 +1,4 @@
-package homework_week10;
+package tasks.homework_week10;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -21,6 +21,7 @@ public class BookingCurrencyTest {
     public void driverInitialize() {
         ChromeOptions options = new ChromeOptions();
         options.setBinary("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome");
+        options.addArguments("started-maximized");
         driver = new ChromeDriver(options);
     }
 

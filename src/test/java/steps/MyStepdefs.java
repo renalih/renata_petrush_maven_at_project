@@ -15,6 +15,8 @@ public class MyStepdefs {
     BookingMainPage mainPage = new BookingMainPage();
     BookingResultPage resultsPage = new BookingResultPage();
 
+
+
     @Given("I open test site")
     public void iOpenTestSite() {
         Driver.getWebDriver().get("https://booking.com");

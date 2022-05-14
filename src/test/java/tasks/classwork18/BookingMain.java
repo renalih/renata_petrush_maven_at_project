@@ -1,4 +1,4 @@
-package classwork18;
+package tasks.classwork18;
 
 import driver.Driver;
 import org.openqa.selenium.By;

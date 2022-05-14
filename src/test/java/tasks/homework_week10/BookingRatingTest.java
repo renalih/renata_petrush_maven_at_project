@@ -1,7 +1,5 @@
-package homework_week10;
+package tasks.homework_week10;
 
-import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -17,6 +15,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class BookingRatingTest {
@@ -39,7 +38,7 @@ public class BookingRatingTest {
         driver.get("https://booking.com");
         driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click(); //accepting cookie
         driver.findElement(By.id("ss")).sendKeys("London");
-        driver.findElement(By.xpath("//span[text()='London']")).click();
+        driver.findElement(By.xpath("//ul[@role='listbox']//li[1]")).click();
 
         LocalDate dateFrom = LocalDate.now(ZoneId.systemDefault()).plusDays(10);
         LocalDate dateTo = dateFrom.plusDays(2);
@@ -58,26 +57,46 @@ public class BookingRatingTest {
 
         driver.findElement(By.xpath("//div[@data-filters-item='review_score:review_score=90']")).click();
 
+        String firstWindow = driver.getWindowHandle();
+        assert driver.getWindowHandles().size() == 1;
         WebElement firstHotel = driver.findElement(By.xpath
                 ("//div[@data-testid='property-card'][1]//div[@data-testid='title']"));
         firstHotel.click();
 
-        String currentWindow = driver.getWindowHandle();
-        driver.switchTo().window(currentWindow);
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!firstWindow.contentEquals(windowHandle)) {
+                driver.switchTo().window(windowHandle);
+            } break;
+
+        }
+   /*     Actions make = new Actions(driver);
+        make.moveToElement(firstHotel).click().build().perform();
+*/
+/*        Set<String> allWindows = driver.getWindowHandles();
+
+        for(String window : allWindows) {
+            driver.switchTo().window(window);
+        }*/
+
+        //driver.switchTo().window(firstHotel.);
+
+        /*String currentWindow = driver.getWindowHandle();
+        driver.switchTo().window(currentWindow);*/
 
 /*        Actions make = new Actions(driver);
         make.moveToElement(firstHotel).doubleClick().build().perform();*/
 
-        WebElement hotelRating = driver.findElement(By.xpath
+/*        WebElement hotelRating = driver.findElement(By.xpath
                 ("//div[@id='js--hp-gallery-scorecard']//div[contains(@aria-label, '9')]"));
         double actualHotelRating = Double.parseDouble(hotelRating.getText().replaceAll("\\D", ""));
         System.out.println("Actual rating of selected hotel is " + actualHotelRating);
 
-    }
+    }*/
 
 /*    @After
     public void driverFinish() {
         driver.close();
     }*/
+}
 }
 

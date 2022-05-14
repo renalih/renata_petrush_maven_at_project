@@ -1,4 +1,4 @@
-package homework_week10;
+package tasks.homework_week10;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -40,7 +40,7 @@ public class BookingFilterTest {
         driver.get("https://booking.com");
         driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click(); //accepting cookie
         driver.findElement(By.id("ss")).sendKeys("Париж");
-        driver.findElement(By.xpath("//span[text()='Париж']")).click();
+        driver.findElement(By.xpath("//ul[@role='listbox']//li[1]")).click();
 
         //set dates
         LocalDate dateFrom = LocalDate.now(ZoneId.systemDefault()).plusDays(3);
