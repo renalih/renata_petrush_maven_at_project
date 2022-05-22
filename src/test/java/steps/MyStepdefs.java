@@ -1,3 +1,4 @@
+/*
 package steps;
 
 import driver.Driver;
@@ -10,6 +11,8 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
+import java.net.MalformedURLException;
+
 public class MyStepdefs {
 
     BookingMainPage mainPage = new BookingMainPage();
@@ -18,7 +21,7 @@ public class MyStepdefs {
 
 
     @Given("I open test site")
-    public void iOpenTestSite() {
+    public void iOpenTestSite() throws MalformedURLException {
         Driver.getWebDriver().get("https://booking.com");
         Driver.getWebDriver().findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
     }
@@ -38,3 +41,4 @@ public class MyStepdefs {
         Driver.destroy();
     }
 }
+*/

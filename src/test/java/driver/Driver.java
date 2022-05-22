@@ -2,21 +2,27 @@ package driver;
 
 import org.openqa.selenium.WebDriver;
 
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
     public static WebDriver driver;
+    private static Config config;
 
-    public static void initWebDriver(Config config) {
+    public static void setConfig(Config theConfig) {
+        config = theConfig;
+    }
+
+    public static void initWebDriver(Config config) throws MalformedURLException {
         if (null == driver) {
             driver = DriverManager.getDriver(config);
         }
     }
 
-    public static WebDriver getWebDriver() {
+    public static WebDriver getWebDriver() throws MalformedURLException {
         if (driver == null) {
-            driver = DriverManager.getDriver(Config.CHROME);
+            driver = DriverManager.getDriver(config);
         }
         setTimeouts(30);
         return driver;

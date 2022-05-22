@@ -1,15 +1,19 @@
 package steps.fake;
 
+import driver.Config;
 import driver.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.net.MalformedURLException;
+
 public class FakeGuiSteps {
 
     @Given(value = "I go to onliner.by")
-    public void checkHeaderTest() {
+    public void checkHeaderTest() throws MalformedURLException {
+        Driver.setConfig(Config.REMOTE);
         Driver.getWebDriver().get("https://www.onliner.by/");
     }
 
