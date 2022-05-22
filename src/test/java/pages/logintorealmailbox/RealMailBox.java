@@ -1,4 +1,5 @@
-package objects;
+/*
+package pages.logintorealmailbox;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -26,3 +27,4 @@ public class RealMailBox extends BookingBasePage {
         Assert.assertTrue("Mail from Booking is not opened!", logoBooking.isDisplayed());
     }
 }
+*/

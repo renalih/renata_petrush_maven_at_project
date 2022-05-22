@@ -1,4 +1,5 @@
-package objects;
+/*
+package pages.trashmail;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -45,3 +46,4 @@ public class TemplateEmail extends BookingBasePage {
     }
 
 }
+*/

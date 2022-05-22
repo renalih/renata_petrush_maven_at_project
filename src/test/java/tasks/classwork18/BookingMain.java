@@ -5,11 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class BookingMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
 
         WebDriver driver = Driver.getWebDriver();
 

@@ -1,3 +1,4 @@
+/*
 package steps;
 
 import driver.Driver;
@@ -5,7 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import objects.TemplateEmail;
+import pages.trashmail.TemplateEmail;
 
 
 public class StepsSignUp {
@@ -38,3 +39,4 @@ public class StepsSignUp {
     public void iShouldSeeGreetingMessage() {
     }
 }
+*/

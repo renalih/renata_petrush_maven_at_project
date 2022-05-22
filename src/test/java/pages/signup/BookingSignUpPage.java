@@ -1,4 +1,4 @@
-package pages;
+package pages.signup;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

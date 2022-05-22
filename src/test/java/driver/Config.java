@@ -4,5 +4,6 @@ public enum Config {
 
     CHROME,
     FIREFOX,
-    EDGE
+    EDGE,
+    REMOTE
 }
